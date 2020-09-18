@@ -15,6 +15,7 @@ namespace WeatherStationAPI.Controllers
     {
         private readonly IWindData _windData;
 
+       
         public WindDataController(IWindData windData)
         {
             _windData = windData;
