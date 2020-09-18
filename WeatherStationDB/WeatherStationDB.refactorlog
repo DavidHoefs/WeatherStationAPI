@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="ea57d6d9-d498-474f-8bd2-2be1fa0135a0" ChangeDateTime="09/17/2020 18:58:07">
+    <Property Name="ElementName" Value="[dbo].[WindData].[WindDirection]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[WindData]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="WindDirection_Knots" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="21339438-8534-4317-8f0b-5b3f1430cdf3" ChangeDateTime="09/17/2020 18:58:13">
+    <Property Name="ElementName" Value="[dbo].[WindData].[WindDirection_Knots]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[WindData]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="WindDirection" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b1806899-c061-4ab9-827a-45973968aacd" ChangeDateTime="09/17/2020 18:58:18">
+    <Property Name="ElementName" Value="[dbo].[WindData].[WindSpeed]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[WindData]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="WindSpeed_Knots" />
+  </Operation>
+</Operations>

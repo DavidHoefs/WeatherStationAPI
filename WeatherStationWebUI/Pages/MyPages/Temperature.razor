@@ -1,0 +1,38 @@
+﻿@page "/Data/Temperature"
+@using DataAccessLibrary
+@using DataAccessLibrary.Models
+@using DataAccessLibrary.DataAccess
+@using WeatherStationWebUI.Models
+
+@inject ITemperatureData _db
+
+<h1>Temperature Page</h1>
+
+<table class="table-striped">
+    <thead>
+        <tr>
+            <th>Temperature</th>
+            <th>DateCaptured</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var temp in temps)
+        {
+            <tr>
+                <td>@temp.Temperature</td>
+                <td>@temp.TimeCaptured</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@code {
+    private List<TemperatureSensorModel> temps;
+    private DisplayTempModel newTemp = new DisplayTempModel();
+
+    protected override async Task OnInitializedAsync()
+    {
+        temps =  _db.GetData();
+    }
+}

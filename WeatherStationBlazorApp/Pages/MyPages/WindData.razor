@@ -1,0 +1,39 @@
+﻿@page "/Data/Wind"
+@using DataAccessLibrary
+@using DataAccessLibrary.DataAccess
+@using DataAccessLibrary.Models
+@using Blazorise.Charts
+
+@inject IWindData _db;
+
+<h3>Wind Data Page</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>WindSpeed (Knots)</th>
+            <th>WindSpeed (MPH)</th>
+            <th>Wind Direction</th>
+            <th>Date Captured</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var data in wind)
+        {
+            <tr>
+                <td>@data.WindSpeed_Knots</td>
+                <td>@data.WindSpeed_MPH</td>
+                <td>@data.WindDirection</td>
+                <td>@data.DateCaptured</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    private List<WindDataModel> wind;
+    protected override async Task OnInitializedAsync()
+    {
+        wind = _db.GetAllData();
+    }
+
+}

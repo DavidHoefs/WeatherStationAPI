@@ -1,0 +1,9 @@
+C:\Users\hoefs\source\repos\WeatherStationAPI\WeatherStationDB\bin\Debug\WeatherStationDB.dacpac
+C:\Users\hoefs\source\repos\WeatherStationAPI\WeatherStationDB\bin\Debug\WeatherStationDB.dll
+C:\Users\hoefs\source\repos\WeatherStationAPI\WeatherStationDB\bin\Debug\WeatherStationDB.pdb
+C:\Users\hoefs\source\repos\WeatherStationAPI\WeatherStationDB\obj\Debug\WeatherStationDB.dll
+C:\Users\hoefs\source\repos\WeatherStationAPI\WeatherStationDB\obj\Debug\WeatherStationDB.pdb
+C:\Users\hoefs\source\repos\WeatherStationAPI\WeatherStationDB\obj\Debug\Model.xml
+C:\Users\hoefs\source\repos\WeatherStationAPI\WeatherStationDB\obj\Debug\refactor.xml
+C:\Users\hoefs\source\repos\WeatherStationAPI\WeatherStationDB\obj\Debug\postdeploy.sql
+C:\Users\hoefs\source\repos\WeatherStationAPI\WeatherStationDB\obj\Debug\predeploy.sql

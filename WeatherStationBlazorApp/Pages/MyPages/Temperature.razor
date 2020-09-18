@@ -1,0 +1,115 @@
+﻿@page "/Data/Temp"
+@using DataAccessLibrary
+@using DataAccessLibrary.DataAccess
+@using DataAccessLibrary.Models
+@using Blazorise.Charts
+
+@inject ITemperatureData _db
+
+<h1>Temperature Page</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Temperature</th>
+            <th>TimeCaptured</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var temp in temps)
+        {
+            <tr>
+                <td>@temp.Temperature</td>
+                <td>@temp.TimeCaptured</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<Button Clicked="@(async () => await HandleRedraw())">Redraw</Button>
+
+<LineChart @ref="lineChart" TItem="double" />
+<BarChart @ref="barChart" TItem="double" />
+
+@code{
+    private List<TemperatureSensorModel> temps;
+    protected override async Task OnInitializedAsync()
+    {
+        temps = _db.GetData();
+    }
+
+    LineChart<double> lineChart;
+    BarChart<double> barChart;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await HandleRedraw();
+        }
+    }
+
+    async Task HandleRedraw()
+    {
+        await lineChart.Clear();
+
+        await lineChart.AddLabelsDatasetsAndUpdate(GetLabels(temps), GetLineChartDataset());
+        await barChart.Clear();
+        await barChart.AddLabelsDatasetsAndUpdate(GetLabels(temps), GetBarChartDataset());
+    }
+
+    BarChartDataset<double> GetBarChartDataset()
+    {
+        return new BarChartDataset<double>
+        {
+            Label = "Temperature",
+            Data = GetTempData(temps),
+            BackgroundColor = backgroundColors,
+            BorderColor = borderColors,
+
+        };
+
+    }
+    LineChartDataset<double> GetLineChartDataset()
+    {
+        return new LineChartDataset<double>
+        {
+            Label = "Temperature",
+            Data = GetTempData(temps),
+            BackgroundColor = backgroundColors,
+            BorderColor = borderColors,
+            Fill = true,
+            PointRadius = 2,
+            BorderDash = new List<int> { }
+        };
+    }
+
+    string[] Labels = { "Red", "Blue", "Yellow", "Green", "Purple", "Orange" };
+    List<string> backgroundColors = new List<string> { ChartColor.FromRgba(255, 99, 132, 0.2f), ChartColor.FromRgba(54, 162, 235, 0.2f), ChartColor.FromRgba(255, 206, 86, 0.2f), ChartColor.FromRgba(75, 192, 192, 0.2f), ChartColor.FromRgba(153, 102, 255, 0.2f), ChartColor.FromRgba(255, 159, 64, 0.2f) };
+    List<string> borderColors = new List<string> { ChartColor.FromRgba(255, 99, 132, 1f), ChartColor.FromRgba(54, 162, 235, 1f), ChartColor.FromRgba(255, 206, 86, 1f), ChartColor.FromRgba(75, 192, 192, 1f), ChartColor.FromRgba(153, 102, 255, 1f), ChartColor.FromRgba(255, 159, 64, 1f) };
+
+    List<double> RandomizeData()
+    {
+        var r = new Random(DateTime.Now.Millisecond);
+
+        return new List<double> { r.Next(3, 50) * r.NextDouble(), r.Next(3, 50) * r.NextDouble(), r.Next(3, 50) * r.NextDouble(), r.Next(3, 50) * r.NextDouble(), r.Next(3, 50) * r.NextDouble(), r.Next(3, 50) * r.NextDouble() };
+    }
+    List<double> GetTempData(List<TemperatureSensorModel> temps)
+    {
+        List<double> ts = new List<double>();
+        foreach (var t in temps)
+        {
+            ts.Add(t.Temperature);
+        }
+        return ts;
+
+    }
+    string[] GetLabels(List<TemperatureSensorModel> temps)
+    {
+        string[] output = new string[temps.Count];
+        for (int i = 0; i < temps.Count; i++)
+        {
+            output[i] = temps[i].TimeCaptured.ToString();
+        }
+        return output;
+    }
+
+}

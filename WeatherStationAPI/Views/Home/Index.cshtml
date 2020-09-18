@@ -1,0 +1,10 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+</div>
+
+<component type="typeof(Counter)" render-mode="ServerPrerendered" param-IncrementAmount="10" />
+
+<component type="typeof(TaskList)" render-mode="ServerPrerendered" />
