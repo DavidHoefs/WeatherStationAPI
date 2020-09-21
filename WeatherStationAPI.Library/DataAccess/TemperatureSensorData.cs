@@ -43,7 +43,7 @@ namespace WeatherStationAPI.Library.DataAccess
                 output.Rows.Add(temp.Temperature, temp.Humidity, temp.TimeCaptured);
             }
            
-            _sql.InsertDataSet("dbo.spTemperatureSensor_InsertSet", output, "WeatherStationDB");
+            _sql.InsertDataSet("dbo.spTemperatureSensor_InsertSet", output, "WeatherStationDB","TemperatureSensorUDT");
 
            
         }

@@ -14,6 +14,6 @@ namespace WeatherStationAPI.Library.Internal.DataAccess
         void SaveData<T>(string storedProcedure, T parameters, string connectionStringName);
         void SaveDataInTransaction<T>(string storedProcedure, T parameters);
         void StartTransaction(string connectionStringName);
-        void InsertDataSet(string storedProcedure, DataTable parameters, string connectionStringName);
+        void InsertDataSet(string storedProcedure, DataTable parameters, string connectionStringName,string udtName);
     }
 }

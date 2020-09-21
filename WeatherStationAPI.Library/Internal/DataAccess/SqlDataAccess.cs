@@ -31,11 +31,10 @@ namespace WeatherStationAPI.Library.Internal.DataAccess
         /// <summary>
         /// Inserts a Set of data in one transaction
         /// </summary>
-        /// <typeparam name="T"></typeparam>
         /// <param name="storedProcedure"></param>
         /// <param name="parameters"></param>
         /// <param name="connectionStringName"></param>
-        public void InsertDataSet(string storedProcedure,DataTable parameters, string connectionStringName)
+        public void InsertDataSet(string storedProcedure,DataTable parameters, string connectionStringName,string udtName)
         {
             
             string connectionString = GetConnectionString(connectionStringName);
@@ -43,9 +42,9 @@ namespace WeatherStationAPI.Library.Internal.DataAccess
             {
                 var p = new
                 {
-                    temperatures = parameters.AsTableValuedParameter("TemperatureSensorUDT")
+                    data = parameters.AsTableValuedParameter(udtName)
                 };
-                int recordsAffected = connection.Execute("dbo.spTemperatureSensor_InsertSet", p, commandType: CommandType.StoredProcedure);
+                int recordsAffected = connection.Execute(storedProcedure, p, commandType: CommandType.StoredProcedure);
                 Console.WriteLine($"Records Affected: {recordsAffected}");
             }
         }
