@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WeatherStationAPI.Library.DataAccess;
 using WeatherStationAPI.Library.Models;
@@ -28,6 +29,13 @@ namespace WeatherStationAPI.Controllers
         public void Post(TemperatureSensorDBModel temp)
         {
             _temperatureSensorData.SaveSensorData(temp);
+        }
+
+        [HttpPost]
+        [Route("InsertBulk")]
+        public  void PostCollection(List<TemperatureSensorDBModel> temperatureSensorModels)
+        {
+            _temperatureSensorData.BulkSaveData(temperatureSensorModels);
         }
     }
 }

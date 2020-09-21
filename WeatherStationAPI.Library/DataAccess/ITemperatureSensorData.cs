@@ -7,5 +7,7 @@ namespace WeatherStationAPI.Library.DataAccess
     {
         List<TemperatureSensorModel> GetData();
         void SaveSensorData(TemperatureSensorDBModel temp);
+
+        void BulkSaveData(List<TemperatureSensorDBModel> temps);
     }
 }

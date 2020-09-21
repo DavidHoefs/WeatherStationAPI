@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using WeatherStationAPI.Library.DataAccess;
 using WeatherStationAPI.Library.Models;
@@ -15,7 +11,6 @@ namespace WeatherStationAPI.Controllers
     {
         private readonly IWindData _windData;
 
-       
         public WindDataController(IWindData windData)
         {
             _windData = windData;

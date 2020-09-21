@@ -28,6 +28,27 @@ namespace WeatherStationAPI.Library.Internal.DataAccess
         {
             return _config.GetConnectionString(name);
         }
+        /// <summary>
+        /// Inserts a Set of data in one transaction
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="storedProcedure"></param>
+        /// <param name="parameters"></param>
+        /// <param name="connectionStringName"></param>
+        public void InsertDataSet(string storedProcedure,DataTable parameters, string connectionStringName)
+        {
+            
+            string connectionString = GetConnectionString(connectionStringName);
+            using(IDbConnection connection = new SqlConnection(connectionString))
+            {
+                var p = new
+                {
+                    temperatures = parameters.AsTableValuedParameter("TemperatureSensorUDT")
+                };
+                int recordsAffected = connection.Execute("dbo.spTemperatureSensor_InsertSet", p, commandType: CommandType.StoredProcedure);
+                Console.WriteLine($"Records Affected: {recordsAffected}");
+            }
+        }
 
         /// <summary>
         /// Generic Method to call stored procedure and load data
